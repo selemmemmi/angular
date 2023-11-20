@@ -1,0 +1,131 @@
+
+<h1>Liste des residence  : </h1>
+
+<table class="table table-striped">
+    <thead>
+        <tr  >
+          <th scope="col">id</th>
+          <th scope="col" sortable="population">name</th>
+          <th scope="col" sortable="area">address</th>
+          <th scope="col" sortable="population">image</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let i of listResidences , let p=index">
+          <ng-container>
+            <th>{{i.id}}</th>
+            <th>{{i.name}}</th>
+            <th>{{i.image}}</th>
+            <th><button
+                type="button"
+                class="btn btn-outline-primary"
+                (click)="show(i)"
+     
+  
+            >
+            Show apartments
+            </button></th>
+        </ng-container> 
+        </tr>
+    </tbody>
+  </table >
+
+  <h3>Les appartement  : </h3>
+
+  <table class="table table-striped"   >
+    <thead>
+        <tr>
+          <th scope="col">id</th>
+          <th scope="col" sortable="population">appartNum</th>
+          <th scope="col" sortable="area">floorNum</th>
+          <th scope="col" sortable="population">surface</th>
+          <th scope="col" sortable="area">terrace</th>
+          <th scope="col" sortable="population">surfaceTerrace</th>	
+          <th scope="col" sortable="area">category</th>
+          <th scope="col" sortable="population">description</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <ng-container >
+            <tr *ngFor="let i of listrs , let p=index">
+                <ng-container >
+                    <th>{{i.id}}</th>
+                    <th>{{i.appartNum}}</th>
+                    <th>{{i.floorNum}}</th>
+                    <th>{{i.surface}}</th>
+                    <th>{{i.terrace}}</th>
+                    <th>{{i.surfaceTerrace}}</th>
+                    <th>{{i.category}}</th>
+                    <th>{{i.description}}</th>
+                    <th><button
+                        type="button"
+                        class="btn btn-outline-primary"
+                        (click)="favorit(i)"
+                        [attr.aria-expanded]="!isCollapsed"
+                        aria-controls="collapseExample"
+                    >
+                    like
+                    </button></th>
+                    <th></th>
+                </ng-container> 
+            </tr>
+        </ng-container>
+        <ng-container  *ngIf="listrs.length==0">
+             <h3>No Apartment found</h3>
+        </ng-container>
+    </tbody>
+  </table>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
+            <button
+                type="button"
+                class="btn btn-outline-primary"
+                (click)="collapse.toggle()"
+                [attr.aria-expanded]="!isCollapsed"
+                aria-controls="collapseExample"
+            >
+            Show favorite 
+            </button>
+
+            <table class="table table-striped" #collapse="ngbCollapse" [(ngbCollapse)]="isCollapsed" [horizontal]="true">
+                <thead>
+                    <tr>
+                      <th scope="col">id</th>
+                      <th scope="col" sortable="population">appartNum</th>
+                      <th scope="col" sortable="area">floorNum</th>
+                      <th scope="col" sortable="population">surface</th>
+                      <th scope="col" sortable="population">terrace</th>
+                      <th scope="col" sortable="population">surfaceTerrace</th>	
+                      <th scope="col" sortable="population">category</th>
+                      <th scope="col" sortable="population">description</th>
+                    </tr>
+                </thead>
+            
+                <tbody>
+                    <ng-container >
+                        <tr *ngFor="let i of favoritlist , let p=index">
+                            <ng-container >
+                                <th>{{i.id}}</th>
+                                <th>{{i.appartNum}}</th>
+                                <th>{{i.floorNum}}</th>
+                                <th>{{i.surface}}</th>
+                                <th>{{i.terrace}}</th>
+                                <th>{{i.surfaceTerrace}}</th>
+                                <th>{{i.category}}</th>
+                                <th>{{i.description}}</th>
+                            </ng-container> 
+                        </tr>
+                    </ng-container>
+                    <ng-container  *ngIf="listrs.length==0">
+                         <h3>VIDE</h3>
+                    </ng-container>
+                </tbody>
+            </table>
